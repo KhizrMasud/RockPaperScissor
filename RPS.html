@@ -2,10 +2,14 @@
 <main>
 
   <body>
-    <button class= "button" onclick="rockButton()">Rock</button>
-    <button class= "button" onclick="paperButton()">Paper</button>
-    <button class= "button" onclick="scissorButton()">Scissor</button>
+    <div>
+    <button class= "Rbutton" onclick="rockButton()">Rock</button>
+    <button class= "Pbutton" onclick="paperButton()">Paper</button>
+    <button class= "Sbutton" onclick="scissorButton()">Scissor</button>
+  </div>
     <div id="demo"></div>
+    <div id="score"></div>
+    <div id = "GameOver"></div>
 
   </body>
 </main>
@@ -13,6 +17,8 @@
 
     var playerCount = 0;
     var computerCount = 0;
+
+
     function computerSelection() {
         var rpsn = Math.trunc((Math.random() *10 ) % 3);
         if (rpsn == 0){
@@ -24,14 +30,39 @@
         else {
           return "scissor"
         }}
+
+        
     function scoreDisplay(a, b){
       console.log("your score is: " + playerCount + " and the computers score is: " + computerCount);
+      document.getElementById("GameOver").innerHTML = "your score is: " + playerCount + " and the computers score is: " + computerCount
       }
+
+
     function closeGame(){
       if (playerCount == 5 || computerCount == 5){
-        let button = document.getElementsByClassName('button');
+        let Rbutton = document.querySelector('.Rbutton');
+        let Pbutton = document.querySelector('.Pbutton');
+        let Sbutton = document.querySelector('.Sbutton');
+
         console.log("Game COMPLETE!!")
+       
+        Rbutton.disabled = true;
+        Pbutton.disabled = true;
+        Sbutton.disabled = true;
+        
+        document.getElementById("GameOver").innerHTML = endingQuote(playerCount,computerCount);
+        document.getElementById("demo").innerHTML = "";
       }}
+
+      function endingQuote(a,b){
+        if (playerCount == 5){
+         return "YOU WON!! Restart to play again!";
+        }
+        else {
+          return "You lost!! Restart to play again!";
+
+        }
+      }
    
         
 
@@ -58,20 +89,6 @@
             console.log(scoreDisplay(playerCount, computerCount));
           }}
 
-    function playerSelection(){
-        var winCount = 0;
-        var weapon = window.prompt("Enter you weapon ");
-        if (weapon == "rock" || 
-        weapon == 'paper' ||
-        weapon == 'scissor') {  
-        alert("You have chosen " + weapon);
-        return weapon;
-        }
-        else {
-        weapon = window.prompt("Enter you weapon ");
-        }}
-
-
     function rockButton(){
         document.getElementById("demo").innerHTML = "You have pressed rock";
         rock = "rock";
@@ -93,8 +110,4 @@
         playRound("scissor", computerSelection());
         closeGame();
         }
-
-
-    
-
-</script>
+    </script>
