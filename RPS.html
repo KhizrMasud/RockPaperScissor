@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<main>
+
+  <body>
+    <button class= "button" onclick="rockButton()">Rock</button>
+    <button class= "button" onclick="paperButton()">Paper</button>
+    <button class= "button" onclick="scissorButton()">Scissor</button>
+    <div id="demo"></div>
+
+  </body>
+</main>
+<script>
+
+    var playerCount = 0;
+    var computerCount = 0;
+    function computerSelection() {
+        var rpsn = Math.trunc((Math.random() *10 ) % 3);
+        if (rpsn == 0){
+          return "rock";
+        }
+        else if (rpsn == 1){
+          return "paper";
+        }
+        else {
+          return "scissor"
+        }}
+    function scoreDisplay(a, b){
+      console.log("your score is: " + playerCount + " and the computers score is: " + computerCount);
+      }
+    function closeGame(){
+      if (playerCount == 5 || computerCount == 5){
+        let button = document.getElementsByClassName('button');
+        console.log("Game COMPLETE!!")
+      }}
+   
+        
+
+    function playRound (playerSelection, computerSelection){
+      console.log("play round is working");
+          if (playerSelection == 'rock' & computerSelection == 'scissor' ||
+          playerSelection == 'paper' & computerSelection == 'rock'  ||
+          playerSelection == 'scissor' & computerSelection == 'paper'){
+            playerCount++;
+            console.log("you won!");
+            console.log(scoreDisplay(playerCount, computerCount));
+
+          }
+          else if (playerSelection == 'rock' & computerSelection == 'paper' ||
+          playerSelection == 'paper' & computerSelection == 'scissor'  ||
+          playerSelection == 'scissor' & computerSelection == 'rock'){
+            computerCount++;
+            console.log("you Lost!");
+            console.log(scoreDisplay(playerCount, computerCount));
+
+          }
+          else{
+            console.log("Its a Tie!");
+            console.log(scoreDisplay(playerCount, computerCount));
+          }}
+
+    function playerSelection(){
+        var winCount = 0;
+        var weapon = window.prompt("Enter you weapon ");
+        if (weapon == "rock" || 
+        weapon == 'paper' ||
+        weapon == 'scissor') {  
+        alert("You have chosen " + weapon);
+        return weapon;
+        }
+        else {
+        weapon = window.prompt("Enter you weapon ");
+        }}
+
+
+    function rockButton(){
+        document.getElementById("demo").innerHTML = "You have pressed rock";
+        rock = "rock";
+        console.log("Rock");
+        playRound("rock", computerSelection());
+        closeGame();
+        }
+    function paperButton(){
+        document.getElementById("demo").innerHTML = "You have pressed paper";
+        paper = "paper";
+        console.log("paper");
+        playRound("paper", computerSelection());
+        closeGame();
+        }
+    function scissorButton(){
+        document.getElementById("demo").innerHTML = "You have pressed scissor";
+        scissor = "scissor";
+        console.log("scissor");
+        playRound("scissor", computerSelection());
+        closeGame();
+        }
+
+
+    
+
+</script>
